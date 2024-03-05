@@ -1,0 +1,23 @@
+,DateTime,BatV,BatStatus,ExtSensor,Humidity_SHT,TemperatureC_DS,TemperatureC_SHT
+0,08:31:43, 3.056, 3, Temperature Sensor,62.9,26.31,27.09
+1,08:32:43, 3.053, 3, Temperature Sensor,62.3,26.37,27.12
+2,08:33:43, 3.055, 3, Temperature Sensor,62.0,26.37,27.09
+3,08:34:43, 3.054, 3, Temperature Sensor,61.8,26.43,27.08
+4,08:35:43, 3.053, 3, Temperature Sensor,61.7,26.43,27.06
+5,08:36:43, 3.056, 3, Temperature Sensor,61.7,26.37,27.02
+6,08:37:43, 3.052, 3, Temperature Sensor,61.7,26.43,27.0
+7,08:38:43, 3.055, 3, Temperature Sensor,61.6,26.43,26.97
+8,08:39:43, 3.053, 3, Temperature Sensor,61.6,26.43,26.97
+9,08:40:43, 3.055, 3, Temperature Sensor,61.7,26.5,26.95
+10,08:41:43, 3.053, 3, Temperature Sensor,61.7,26.5,26.97
+11,08:42:43, 3.053, 3, Temperature Sensor,62.5,26.5,26.97
+12,08:43:43, 3.052, 3, Temperature Sensor,63.6,26.5,26.97
+13,08:44:43, 3.053, 3, Temperature Sensor,63.9,26.56,27.0
+14,08:45:43, 3.054, 3, Temperature Sensor,64.2,26.56,27.01
+15,08:46:43, 3.053, 3, Temperature Sensor,64.1,26.62,27.0
+16,08:47:43, 3.053, 3, Temperature Sensor,64.0,26.62,27.04
+17,08:48:43, 3.054, 3, Temperature Sensor,64.0,26.68,27.02
+18,08:49:43, 3.054, 3, Temperature Sensor,64.1,26.68,27.06
+19,08:50:43, 3.055, 3, Temperature Sensor,64.2,26.68,27.08
+20,08:51:43, 3.054, 3, Temperature Sensor,64.2,26.68,27.09
+21,08:52:43, 3.053, 3, Temperature Sensor,63.9,26.75,27.11
