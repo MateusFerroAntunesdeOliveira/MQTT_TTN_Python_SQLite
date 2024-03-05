@@ -1,3 +1,4 @@
+import sqlite3
 import pandas as pd
 import pytz
 from datetime import datetime, timedelta
@@ -108,6 +109,44 @@ def createDataFrame(formatedTime, batV, batStatus, extSensor, humidity_SHT, temp
 def writeCsvFile(dataFrame):
     dataFrame.to_csv(outputDirectory + outputFileName, index = True)
 
+def createDatabase():
+    conn = sqlite3.connect('output/sensors.db')
+    c = conn.cursor()
+    
+    c.execute('''
+                CREATE TABLE IF NOT EXISTS sensors (
+                    DateTime text, BatV real, BatStatus integer, ExtSensor text, Humidity_SHT real, TemperatureC_DS real, TemperatureC_SHT real
+                )
+    ''')
+
+    conn.commit()
+    conn.close()    
+    
+def insertData(dataFrame):
+    conn = sqlite3.connect('output/sensors.db')
+    c = conn.cursor()
+
+    # Verificar se os registros já existem na tabela com base na coluna DateTime
+    existing_records = c.execute('SELECT DateTime FROM sensors').fetchall()
+    existing_records = [record[0] for record in existing_records]
+
+    new_records = dataFrame[~dataFrame['DateTime'].isin(existing_records)]
+
+    # Inserir apenas os registros que não existem na tabela
+    new_records.to_sql('sensors', conn, if_exists='append', index=False)
+    conn.close()
+
+def viewTable():
+    conn = sqlite3.connect('output/sensors.db')
+    c = conn.cursor()
+
+    c.execute('SELECT * FROM sensors')
+    rows = c.fetchall()
+
+    for row in rows:
+        print(row)
+    conn.close()
+
 def setup():
     inputFileDirectory = defineInputFileDirectory()
     decodedValue, readTime = readInputFile(inputFileDirectory)
@@ -121,6 +160,10 @@ def setup():
     dataFrame['TemperatureC_DS'] = pd.to_numeric(dataFrame['TemperatureC_DS'])
     dataFrame['TemperatureC_SHT'] = pd.to_numeric(dataFrame['TemperatureC_SHT'])
     dataFrame['Humidity_SHT'] = pd.to_numeric(dataFrame['Humidity_SHT'])
+    
+    createDatabase()
+    insertData(dataFrame)
+    viewTable()
 
     writeCsvFile(dataFrame)
 
