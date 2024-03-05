@@ -1,6 +1,7 @@
-import sqlite3
 import pandas as pd
 import pytz
+import sqlite3
+import time
 from datetime import datetime, timedelta
 
 BatV = "BatV"
@@ -113,6 +114,7 @@ def createDatabase():
     conn = sqlite3.connect('output/sensors.db')
     c = conn.cursor()
     
+    c.execute('''DROP TABLE IF EXISTS sensors''')
     c.execute('''
                 CREATE TABLE IF NOT EXISTS sensors (
                     DateTime text, BatV real, BatStatus integer, ExtSensor text, Humidity_SHT real, TemperatureC_DS real, TemperatureC_SHT real
@@ -165,10 +167,15 @@ def setup():
     insertData(dataFrame)
     viewTable()
 
-    writeCsvFile(dataFrame)
+    # writeCsvFile(dataFrame)
 
 def main():
-    setup()
+    while True:
+        setup()
+        
+        print("\nPolling...\n")
+        # Aguardar 30 segundos antes de executar novamente (polling)
+        time.sleep(30)
 
 if __name__ == "__main__":
     main()
